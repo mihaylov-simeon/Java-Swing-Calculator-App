@@ -153,6 +153,9 @@ public class Calculator extends JFrame implements ActionListener {
                         .concat(String.valueOf(index)));
             }
         }
+
+        double containerResult = Double.parseDouble(String.valueOf(num1));
+
         if (e.getSource() == decButton) {
             textField.setText(textField.getText().concat("."));
         }
@@ -186,7 +189,7 @@ public class Calculator extends JFrame implements ActionListener {
                 case '*' -> result = num1 * num2;
                 case '/' -> result = num1 / num2;
             }
-            num1 = result;
+            containerResult = result;
             textField.setText(String.valueOf(result));
         }
         if (e.getSource() == clrButton) {
@@ -208,9 +211,9 @@ public class Calculator extends JFrame implements ActionListener {
 
         if (e.getSource() == historyButton) {
             try {
-                JTextArea textArea = new JTextArea(20, 40);
+                JTextArea textArea = new JTextArea(10, 30);
                 textArea.read(new FileReader(("D:\\Calculator\\src\\history.txt")), null);
-                textArea.setText(textField.getText());
+                textArea.setText(containerResult + "" + " " + operator + " " + num2 + " = " + result);
                 textArea.setEditable(false);
                 JOptionPane.showMessageDialog(historyButton, new JScrollPane(textArea));
             } catch (IOException ex) {
