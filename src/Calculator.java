@@ -189,11 +189,11 @@ public class Calculator extends JFrame implements ActionListener {
                 case '*' -> result = num1 * num2;
                 case '/' -> result = num1 / num2;
             }
-            containerResult = result;
-            textField.setText(String.valueOf(result));
+            textField.setText(String.format(containerResult + "" + " " + operator + " " + num2 + " = " + result));
         }
         if (e.getSource() == clrButton) {
             textField.setText("");
+
         }
         if (e.getSource() == delButton) {
             String currentText = textField.getText();
@@ -213,7 +213,8 @@ public class Calculator extends JFrame implements ActionListener {
             try {
                 JTextArea textArea = new JTextArea(10, 30);
                 textArea.read(new FileReader(("D:\\Calculator\\src\\history.txt")), null);
-                textArea.setText(containerResult + "" + " " + operator + " " + num2 + " = " + result);
+                String save = String.format(containerResult + "" + " " + operator + " " + num2 + " = " + result);
+                textArea.setText(save);
                 textArea.setEditable(false);
                 JOptionPane.showMessageDialog(historyButton, new JScrollPane(textArea));
             } catch (IOException ex) {
