@@ -9,11 +9,11 @@ public class Calculator extends JFrame implements ActionListener {
     JFrame frame;
     JTextField textField;
     JButton[] numbers = new JButton[10];
-    JButton[] functions = new JButton[9];
+    JButton[] functions = new JButton[10];
     JButton addButton, subButton, mulButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
-  //  JButton historyButton;
+    JButton historyButton;
 
     Font myFont = new Font("Century Gothic", Font.BOLD, 30);
 
@@ -46,7 +46,7 @@ public class Calculator extends JFrame implements ActionListener {
         delButton = new JButton("Del");
         clrButton = new JButton("Clr");
         negButton = new JButton("(-)");
-    //    historyButton = new JButton("History");
+        historyButton = new JButton("History");
 
         frame.add(textField);
         functions[0] = addButton;
@@ -58,9 +58,9 @@ public class Calculator extends JFrame implements ActionListener {
         functions[6] = delButton;
         functions[7] = clrButton;
         functions[8] = negButton;
-    //    functions[9] = historyButton;
+        functions[9] = historyButton;
 
-        for (int index = 0; index < 9; index++) {
+        for (int index = 0; index < 10; index++) {
             functions[index].addActionListener(this);
             functions[index].setFont(myFont);
             functions[index].setFocusable(false);
@@ -110,7 +110,7 @@ public class Calculator extends JFrame implements ActionListener {
         negButton.setBounds(40, 430, 105, 50);
         delButton.setBounds(153, 430, 105, 50);
         clrButton.setBounds(265, 430, 105, 50);
-       // historyButton.setBounds(40, 500, 330, 50);
+        historyButton.setBounds(40, 500, 330, 50);
 
         panel = new JPanel();
         panel.setBounds(40, 110, 330, 300);
@@ -137,7 +137,7 @@ public class Calculator extends JFrame implements ActionListener {
         frame.add(negButton);
         frame.add(delButton);
         frame.add(clrButton);
-     //   frame.add(historyButton);
+        frame.add(historyButton);
         frame.setVisible(true);
     }
 
@@ -206,16 +206,16 @@ public class Calculator extends JFrame implements ActionListener {
             textField.setText(String.valueOf(temp));
         }
 
-//        if (e.getSource() == historyButton) {
-//            try {
-//                JTextArea textArea = new JTextArea(20, 40);
-//                textArea.read(new FileReader(("D:\\Calculator\\src\\history.txt")), null);
-//                textArea.setText(textField.getText());
-//                textArea.setEditable(false);
-//                JOptionPane.showMessageDialog(historyButton, new JScrollPane(textArea));
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
+        if (e.getSource() == historyButton) {
+            try {
+                JTextArea textArea = new JTextArea(20, 40);
+                textArea.read(new FileReader(("D:\\Calculator\\src\\history.txt")), null);
+                textArea.setText(textField.getText());
+                textArea.setEditable(false);
+                JOptionPane.showMessageDialog(historyButton, new JScrollPane(textArea));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
